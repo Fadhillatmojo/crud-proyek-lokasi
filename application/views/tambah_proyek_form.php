@@ -17,6 +17,7 @@
 
 <body>
 	<div class="container-scroller">
+		<!-- partial:../../partials/_navbar.html -->
 		<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
 				<a class="navbar-brand brand-logo" href="<?php echo site_url('App/'); ?>">Proyek Lokasi</a>
@@ -162,6 +163,7 @@
 		</nav>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
+			<!-- partial:../../partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
 					<li class="nav-item nav-profile">
@@ -185,122 +187,57 @@
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="page-header">
+						<h3 class="page-title"> Tambah Proyek </h3>
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item">All data</li>
+								<li class="breadcrumb-item">Proyek</li>
+								<li class="breadcrumb-item active" aria-current="page">Tambah Proyek</li>
 							</ol>
 						</nav>
-						<h3 class="page-title"> Data Proyek dan Lokasi </h3>
-						<a href="<?php echo site_url('proyek/tambahProyek'); ?>" class="btn btn-light">Tambah Proyek</a>
 					</div>
 					<div class="row">
-						<div class="col-lg-12 grid-margin stretch-card">
+						<div class="col-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<p>
-										Data Proyek
-									</p>
-									<table class="table table-bordered">
-										<thead>
-											<tr>
-												<th> # </th>
-												<th> Nama Proyek </th>
-												<th> Client </th>
-												<th> Rentang Proyek </th>
-												<!-- <th> Tanggal Selesai </th> -->
-												<th> Lokasi </th>
-												<th> Pimpinan Proyek </th>
-												<th> Keterangan </th>
-												<th> Action </th>
+									<form class="forms-sample" action="<?php echo site_url('proyek/simpanProyek'); ?>" method="post">
+										<div class="form-group">
+											<label for="namaProyek">Nama Proyek</label>
+											<input type="text" class="form-control" id="namaProyek" placeholder="Nama Proyek" name="namaProyek" required>
+										</div>
+										<div class="form-group">
+											<label for="client">Client</label>
+											<input type="text" class="form-control" id="client" placeholder="Client" name="client" required>
+										</div>
+										<div class="form-group">
+											<label for="tglMulai">Tanggal Mulai</label>
+											<input type="date" class="form-control" id="tglMulai" name="tglMulai" required>
+										</div>
+										<div class="form-group">
+											<label for="tglSelesai">Tanggal Selesai</label>
+											<input type="date" class="form-control" id="tglSelesai" name="tglSelesai" required>
+										</div>
+										<div class="form-group">
+											<label for="pimpinanProyek">Pimpinan Proyek</label>
+											<input type="text" class="form-control" id="pimpinanProyek" placeholder="Pimpinan Proyek" name="pimpinanProyek" required>
+										</div>
+										<div class="form-group">
+											<label for="keterangan">Keterangan</label>
+											<textarea class="form-control" id="keterangan" placeholder="Keterangan" name="keterangan" required></textarea>
+										</div>
 
-											</tr>
-										</thead>
-										<tbody>
-											<?php if (!empty($proyek)): ?>
-												<?php $no = 1; ?>
-												<?php foreach ($proyek as $itemProyek): ?>
-													<tr>
-
-														<td><?php echo $no++; ?></td>
-
-														<td><?php echo htmlspecialchars($itemProyek['namaProyek']); ?></td>
-														<td><?php echo htmlspecialchars($itemProyek['client']); ?></td>
-														<td><?php echo htmlspecialchars($itemProyek['tglMulai']); ?> - <?php echo htmlspecialchars($itemProyek['tglSelesai']); ?></td>
-														<td>
-															<?php if (!empty($itemProyek['lokasi'])): ?>
-																<ol>
-																	<?php foreach ($itemProyek['lokasi'] as $itemProyekLokasi): ?>
-																		<li>
-																			<?php echo htmlspecialchars($itemProyekLokasi['namaLokasi']); ?><br>
-																		</li>
-																	<?php endforeach; ?>
-																</ol>
-															<?php endif; ?>
-
-														</td>
-														<td><?php echo htmlspecialchars($itemProyek['pimpinanProyek']); ?></td>
-														<td><?php echo htmlspecialchars($itemProyek['keterangan']); ?></td>
-														<td>button</td>
-													</tr>
-												<?php endforeach; ?>
-											<?php else: ?>
-												<tr>
-													<td colspan="6">Tidak ada data lokasi.</td>
-												</tr>
-											<?php endif; ?>
-
-										</tbody>
-									</table>
+										<button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+										<a href="<?php echo site_url('App/'); ?>" class="btn btn-light">Back</a>
+									</form>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-lg-12 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<p>
-										Data Lokasi
-									</p>
-									<table class="table table-bordered">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>Nama Lokasi</th>
-												<th>Kota</th>
-												<th>Provinsi</th>
-												<th>Negara</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php $no = 1; ?>
-											<?php foreach ($lokasi as $itemLokasi): ?>
-												<tr>
-
-													<td><?php echo $no++; ?></td>
-													<td><?php echo htmlspecialchars($itemLokasi['namaLokasi']); ?></td>
-													<td><?php echo htmlspecialchars($itemLokasi['kota']); ?></td>
-													<td><?php echo htmlspecialchars($itemLokasi['provinsi']); ?></td>
-													<td><?php echo htmlspecialchars($itemLokasi['negara']); ?></td>
-
-													<td>Button</td>
-												</tr>
-											<?php endforeach; ?>
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-
 				</div>
 				<!-- content-wrapper ends -->
-				<!-- partial:../../partials/_footer.html -->
 				<footer class="footer">
 					<div class="d-sm-flex justify-content-center justify-content-sm-between">
-						<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made by Fadhill <i class="mdi mdi-heart text-danger"></i></span>
+						<span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
+						<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copied by Fadhill <i class="mdi mdi-heart text-danger"></i></span>
 					</div>
 				</footer>
 				<!-- partial -->

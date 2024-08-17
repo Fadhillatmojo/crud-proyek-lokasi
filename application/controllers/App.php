@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller
+class App extends CI_Controller
 {
 
 	/**
@@ -28,16 +28,25 @@ class Welcome extends CI_Controller
 	{
 		$url_proyek = "http://localhost:8080/api/proyek"; // Ganti dengan URL API Anda
 		$url_lokasi = "http://localhost:8080/api/lokasi"; // Ganti dengan URL API Anda
-		$response_proyek = callAPI('GET', $url_proyek);
 		$response_lokasi = callAPI('GET', $url_lokasi);
-
-		if ($response_proyek || $response_lokasi) {
+		$response_proyek = callAPI('GET', $url_proyek);
+		// echo '<pre>';
+		// print_r($response_proyek);
+		// print_r($response_lokasi);
+		// print_r(is_array($response_proyek) && is_array($response_lokasi));
+		// echo '</pre>';
+		if (is_array($response_proyek) && is_array($response_lokasi)) {
 			$this->load->view('data_view', [
+				'lokasi' => $response_lokasi,
 				'proyek' => $response_proyek,
-				'lokasi' => $response_lokasi
 			]);
 		} else {
 			echo "Error fetching data!";
 		}
+	}
+
+	public function tambahLokasi()
+	{
+		$this->load->view('welcome_message');
 	}
 }
