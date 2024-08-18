@@ -1,71 +1,63 @@
-###################
-What is CodeIgniter
-###################
+# Proyek Management System
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+Ini adalah sistem manajemen proyek yang terdiri dari frontend dan backend. Proyek ini menggunakan CodeIgniter sebagai framework frontend dan REST API Spring Boot untuk backend-nya. 
 
-*******************
-Release Information
-*******************
+## Prerequisites
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+Sebelum memulai dengan proyek ini, pastikan Anda telah melakukan hal berikut:
 
-**************************
-Changelog and New Features
-**************************
+1. **Clone Backend/API Repositori**:
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+   Proyek ini bergantung pada backend API. Clone repositori backend dari link berikut dan ikuti petunjuk yang ada di repositori untuk mengatur dan menjalankannya.
 
-*******************
-Server Requirements
-*******************
+   ``bash
+   git clone https://github.com/Fadhillatmojo/rest-api-proyek.git``
 
-PHP version 5.6 or newer is recommended.
+2. Instalasi PHP:
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+		Pastikan Anda menggunakan PHP versi 7.4.2 atau yang lebih sesuai dengan kebutuhan proyek ini. Anda dapat mengunduh PHP 7.4.2 dari situs web resmi PHP atau menggunakan XAMPP/Laragon yang sudah menyertakan versi yang sesuai. (XAMPP or Laragon)
 
-************
-Installation
-************
+3. Instalasi Frontend
 
-Please see the `installation section <https://codeigniter.com/userguide3/installation/index.html>`_
-of the CodeIgniter User Guide.
+		Clone repositori frontend ke dalam direktori htdocs (untuk XAMPP) atau www (untuk Laragon).
+		
+		``bash
+		git clone [URL repositori frontend Anda] /path/to/your/xampp/htdocs/your-project``
+		atau
+		``bash
+		git clone [URL repositori frontend Anda] /path/to/your/laragon/www/your-project``
+		
+		Masuk ke Direktori Proyek:
+		
+		``bash
+		cd /path/to/your/xampp/htdocs/your-project``
+		atau
+		``bash
+		cd /path/to/your/laragon/www/your-project``
 
-*******
-License
-*******
+		Instalasi Dependensi:
+		Pastikan Anda memiliki Composer terinstal. Jalankan perintah berikut untuk menginstal dependensi CodeIgniter:
+		
+		``bash
+		composer install``
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
-
-*********
-Resources
-*********
-
--  `User Guide <https://codeigniter.com/docs>`_
--  `Contributing Guide <https://github.com/bcit-ci/CodeIgniter/blob/develop/contributing.md>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
-
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
+		Konfigurasi:
+		
+		Jalankan Backend/API:
+		
+		Pastikan backend API yang telah Anda clone dan konfigurasi sedang berjalan di server lokal Anda.
+		
+		Jalankan Frontend:
+		
+		Akses frontend melalui server lokal. Jika menggunakan XAMPP, buka browser dan akses URL seperti http://localhost/crud-proyek-lokasi.
+		
+		Penggunaan
+		CRUD PROYEK beserta Lokasi nya
+		CRUD LOKASI 
+		
+		Kontak
+		Jika Anda memiliki pertanyaan atau membutuhkan bantuan, silakan hubungi saya di fadhillatmojo@gmail.com atau buka issue di repositori ini.
+		
+		
+		
+		
