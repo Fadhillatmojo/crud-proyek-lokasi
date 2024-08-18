@@ -36,29 +36,47 @@ class Proyek extends CI_Controller
 
 	public function simpanProyek()
 	{
-		// Ambil data dari form
-		$data = array(
-			'namaProyek' => $this->input->post('namaProyek'),
-			'client' => $this->input->post('client'),
-			'tglMulai' => $this->input->post('tglMulai'),
-			'tglSelesai' => $this->input->post('tglSelesai'),
-			'pimpinanProyek' => $this->input->post('pimpinanProyek'),
-			'keterangan' => $this->input->post('keterangan'),
-		);
+		// Load the form validation library
+		$this->load->library('form_validation');
 
-		// URL API untuk menyimpan proyek
-		$api_url = "http://localhost:8080/api/proyek";
+		// Set validation rules
+		$this->form_validation->set_rules('namaProyek', 'Nama Proyek', 'required');
+		$this->form_validation->set_rules('client', 'Client', 'required');
+		$this->form_validation->set_rules('tglMulai', 'Tanggal Mulai', 'required');
+		$this->form_validation->set_rules('tglSelesai', 'Tanggal Selesai', 'required');
+		$this->form_validation->set_rules('pimpinanProyek', 'Pimpinan Proyek', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+		$this->form_validation->set_rules('lokasiIds[]', 'Lokasi', 'required');
 
-		// Menggunakan cURL untuk mengirim data ke API
-		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $api_url);
-		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		$response = curl_exec($curl);
-		curl_close($curl);
+		// If validation fails, reload the form
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('your_form_view'); // Replace with your form view
+		} else {
+			// Get form data
+			$data = array(
+				'namaProyek' => $this->input->post('namaProyek'),
+				'client' => $this->input->post('client'),
+				'tglMulai' => $this->input->post('tglMulai'),
+				'tglSelesai' => $this->input->post('tglSelesai'),
+				'pimpinanProyek' => $this->input->post('pimpinanProyek'),
+				'keterangan' => $this->input->post('keterangan'),
+				'lokasiIds' => $this->input->post('lokasiIds') // This should be an array
+			);
 
-		// Redirect kembali ke halaman daftar proyek
-		redirect('proyek');
+			// Set the API endpoint
+			$url = 'https://your-api-endpoint.com/api/proyek'; // Replace with your API URL
+
+			// Call the API using the callAPI helper function
+			$response = callAPI('POST', $url, $data);
+
+			// Check the API response
+			if ($response && isset($response['success']) && $response['success'] === true) {
+				// Redirect or show success message
+				redirect('proyek/success'); // Replace with your success page
+			} else {
+				// Handle error
+				$this->load->view('your_form_view', ['error' => 'Failed to save project. Please try again.']);
+			}
+		}
 	}
 }

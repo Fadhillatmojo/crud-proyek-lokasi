@@ -38,7 +38,7 @@
 				</div>
 				<ul class="navbar-nav navbar-nav-right">
 					<li class="nav-item nav-profile dropdown">
-						<a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+						<a class="nav-link dropdown-toggle" id="profileDropdown" href="<?php echo site_url('App/'); ?>" data-bs-toggle="dropdown" aria-expanded="false">
 							<div class="nav-profile-text">
 								<p class="mb-1 text-black">Fadhill Atmojo</p>
 							</div>
@@ -165,7 +165,7 @@
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
 				<ul class="nav">
 					<li class="nav-item nav-profile">
-						<a href="#" class="nav-link">
+						<a href="<?php echo site_url('App/'); ?>" class="nav-link">
 							<div class="nav-profile-text d-flex flex-column">
 								<span class="font-weight-bold mb-2">Fadhill Atmojo</span>
 								<span class="text-secondary text-small">Software Developer</span>
@@ -175,7 +175,7 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="<?php echo site_url('App/'); ?>">
-							<span class="menu-title">Proyek Lokasi</span>
+							<span class="menu-title">Proyek & Lokasi</span>
 							<i class="mdi mdi-home menu-icon"></i>
 						</a>
 					</li>
@@ -187,10 +187,10 @@
 					<div class="page-header">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item">All data</li>
+								<li class="breadcrumb-item">All Data Proyek</li>
 							</ol>
 						</nav>
-						<h3 class="page-title"> Data Proyek dan Lokasi </h3>
+						<h3 class="page-title"> Data Proyek </h3>
 						<a href="<?php echo site_url('proyek/tambahProyek'); ?>" class="btn btn-light">Tambah Proyek</a>
 					</div>
 					<div class="row">
@@ -240,7 +240,12 @@
 														</td>
 														<td><?php echo htmlspecialchars($itemProyek['pimpinanProyek']); ?></td>
 														<td><?php echo htmlspecialchars($itemProyek['keterangan']); ?></td>
-														<td>button</td>
+														<td>
+															<button type="button" class="btn btn-gradient-warning">Update</button>
+															<br>
+															<br>
+															<button type="button" class="btn btn-gradient-danger">Delete</button>
+														</td>
 													</tr>
 												<?php endforeach; ?>
 											<?php else: ?>
@@ -254,6 +259,15 @@
 								</div>
 							</div>
 						</div>
+					</div>
+					<div class="page-header">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">All Data Lokasi</li>
+							</ol>
+						</nav>
+						<h3 class="page-title"> Data Lokasi </h3>
+						<a href="<?php echo site_url('lokasi/tambahLokasi'); ?>" class="btn btn-light">Tambah Lokasi</a>
 					</div>
 					<div class="row">
 						<div class="col-lg-12 grid-margin stretch-card">
@@ -283,8 +297,16 @@
 													<td><?php echo htmlspecialchars($itemLokasi['kota']); ?></td>
 													<td><?php echo htmlspecialchars($itemLokasi['provinsi']); ?></td>
 													<td><?php echo htmlspecialchars($itemLokasi['negara']); ?></td>
-
-													<td>Button</td>
+													<td>
+														<a href="<?php echo site_url('lokasi/edit/' . $itemLokasi['id']); ?>" class="btn btn-gradient-warning">Update</a>
+														<br>
+														<br>
+														<!-- Formulir untuk Hapus -->
+														<form action="<?php echo site_url('lokasi/delete/' . $itemLokasi['id']); ?>" method="post" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus lokasi ini?');">
+															<input type="hidden" name="id" value="<?php echo $itemLokasi['id']; ?>">
+															<button type="submit" class="btn btn-gradient-danger">Delete</button>
+														</form>
+													</td>
 												</tr>
 											<?php endforeach; ?>
 

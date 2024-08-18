@@ -5,7 +5,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>CRUD Proyek Lokasi</title>
+	<title>Tambah Lokasi</title>
 	<!-- plugins:css -->
 	<link rel="stylesheet" href="<?php echo base_url('assets/vendors/mdi/css/materialdesignicons.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/vendors/ti-icons/css/themify-icons.css'); ?>">
@@ -187,11 +187,11 @@
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="page-header">
-						<h3 class="page-title"> Tambah Proyek </h3>
+						<h3 class="page-title"> Tambah Lokasi </h3>
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item">Proyek</li>
-								<li class="breadcrumb-item active" aria-current="page">Tambah Proyek</li>
+								<li class="breadcrumb-item">Lokasi</li>
+								<li class="breadcrumb-item active" aria-current="page">Tambah Lokasi</li>
 							</ol>
 						</nav>
 					</div>
@@ -199,35 +199,28 @@
 						<div class="col-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<form class="forms-sample" action="<?php echo site_url('proyek/simpanProyek'); ?>" method="post">
+									<form class="forms-sample" action="<?php echo site_url('lokasi/simpanLokasi'); ?>" method="post">
 										<div class="form-group">
-											<label for="namaProyek">Nama Proyek</label>
-											<input type="text" class="form-control" id="namaProyek" placeholder="Nama Proyek" name="namaProyek" required>
+											<label for="namaLokasi">Nama Lokasi</label>
+											<input type="text" class="form-control" id="namaLokasi" placeholder="Nama Lokasi" name="namaLokasi" required>
 										</div>
 										<div class="form-group">
-											<label for="client">Client</label>
-											<input type="text" class="form-control" id="client" placeholder="Client" name="client" required>
+											<label for="kota">Kota</label>
+											<input type="text" class="form-control" id="kota" placeholder="Kota" name="kota" required>
 										</div>
 										<div class="form-group">
-											<label for="tglMulai">Tanggal Mulai</label>
-											<input type="date" class="form-control" id="tglMulai" name="tglMulai" required>
+											<label for="provinsi">Provinsi</label>
+											<input type="text" class="form-control" id="provinsi" placeholder="Provinsi" name="provinsi" required>
 										</div>
 										<div class="form-group">
-											<label for="tglSelesai">Tanggal Selesai</label>
-											<input type="date" class="form-control" id="tglSelesai" name="tglSelesai" required>
-										</div>
-										<div class="form-group">
-											<label for="pimpinanProyek">Pimpinan Proyek</label>
-											<input type="text" class="form-control" id="pimpinanProyek" placeholder="Pimpinan Proyek" name="pimpinanProyek" required>
-										</div>
-										<div class="form-group">
-											<label for="keterangan">Keterangan</label>
-											<textarea class="form-control" id="keterangan" placeholder="Keterangan" name="keterangan" required></textarea>
+											<label for="negara">Negara</label>
+											<input type="text" class="form-control" id="negara" placeholder="Negara" name="negara" required>
 										</div>
 
 										<button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
 										<a href="<?php echo site_url('App/'); ?>" class="btn btn-light">Back</a>
 									</form>
+
 								</div>
 							</div>
 						</div>
