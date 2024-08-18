@@ -7,7 +7,6 @@ class Lokasi extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		// Load model jika perlu
 	}
 
 	public function tambahLokasi()

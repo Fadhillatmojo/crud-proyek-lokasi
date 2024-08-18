@@ -19,22 +19,14 @@ class App extends CI_Controller
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
-	// public function index()
-	// {
 
-	// 	$this->load->view('welcome_message');
-	// }
 	public function index()
 	{
-		$url_proyek = "http://localhost:8080/api/proyek"; // Ganti dengan URL API Anda
-		$url_lokasi = "http://localhost:8080/api/lokasi"; // Ganti dengan URL API Anda
+		$url_proyek = "http://localhost:8080/api/proyek"; 
+		$url_lokasi = "http://localhost:8080/api/lokasi"; 
 		$response_lokasi = callAPI('GET', $url_lokasi);
+		// die($response_lokasi);
 		$response_proyek = callAPI('GET', $url_proyek);
-		// echo '<pre>';
-		// print_r($response_proyek);
-		// print_r($response_lokasi);
-		// print_r(is_array($response_proyek) && is_array($response_lokasi));
-		// echo '</pre>';
 		if (is_array($response_proyek) && is_array($response_lokasi)) {
 			$this->load->view('data_view', [
 				'lokasi' => $response_lokasi,
@@ -44,9 +36,4 @@ class App extends CI_Controller
 			echo "Error fetching data!";
 		}
 	}
-
-	// public function tambahLokasi()
-	// {
-	// 	$this->load->view('welcome_message');
-	// }
 }

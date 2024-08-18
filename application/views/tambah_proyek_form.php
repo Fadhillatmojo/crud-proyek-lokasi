@@ -7,6 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>CRUD Proyek Lokasi</title>
 	<!-- plugins:css -->
+	<!-- Plugin css for this page -->
+	<link rel="stylesheet" href="<?php echo base_url('assets/vendors/select2/select2.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/vendors/mdi/css/materialdesignicons.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/vendors/ti-icons/css/themify-icons.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/vendors/css/vendor.bundle.base.css'); ?>">
@@ -199,7 +201,7 @@
 						<div class="col-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<form class="forms-sample" action="<?php echo site_url('proyek/simpanProyek'); ?>" method="post">
+									<form class="forms-sample" action="<?php echo site_url('proyek/post'); ?>" method="post">
 										<div class="form-group">
 											<label for="namaProyek">Nama Proyek</label>
 											<input type="text" class="form-control" id="namaProyek" placeholder="Nama Proyek" name="namaProyek" required>
@@ -224,7 +226,18 @@
 											<label for="keterangan">Keterangan</label>
 											<textarea class="form-control" id="keterangan" placeholder="Keterangan" name="keterangan" required></textarea>
 										</div>
-
+										<div class="form-group">
+											<label>Lokasi Proyek</label>
+											<select class="js-example-basic-multiple" multiple="multiple" style="width:100%" id="lokasi" name="lokasiIds[]" required>
+												<?php if (!empty($lokasi)): ?>
+													<?php foreach ($lokasi as $itemlokasi): ?>
+														<option value="<?php echo $itemlokasi['id']; ?>">
+															<?php echo $itemlokasi['namaLokasi']; ?>
+														</option>
+													<?php endforeach; ?> 
+												<?php endif; ?>
+											</select>
+										</div>
 										<button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
 										<a href="<?php echo site_url('App/'); ?>" class="btn btn-light">Back</a>
 									</form>
@@ -251,6 +264,8 @@
 	<script src="<?php echo base_url('assets/vendors/js/vendor.bundle.base.js'); ?>"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page -->
+	<script src="<?php echo base_url('assets/vendors/select2/select2.min.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/vendors/typeahead.js/typeahead.bundle.min.js'); ?>"></script>
 	<!-- End plugin js for this page -->
 	<!-- inject:js -->
 	<script src="<?php echo base_url('assets/js/off-canvas.js'); ?>"></script>
@@ -260,6 +275,10 @@
 	<script src="<?php echo base_url('assets/js/jquery.cookie.js'); ?>"></script>
 	<!-- endinject -->
 	<!-- Custom js for this page -->
+	<script src="<?php echo base_url('assets/js/typeahead.js'); ?>"></script>
+
+	<script src="<?php echo base_url('assets/js/select2.js'); ?>"></script>
+	<!-- <script src="../../assets/js/select2.js"></script> -->
 	<!-- End custom js for this page -->
 </body>
 
