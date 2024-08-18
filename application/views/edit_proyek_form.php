@@ -7,6 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>CRUD Proyek Lokasi</title>
 	<!-- plugins:css -->
+	<!-- Plugin css for this page -->
+	<link rel="stylesheet" href="<?php echo base_url('assets/vendors/select2/select2.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/vendors/mdi/css/materialdesignicons.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/vendors/ti-icons/css/themify-icons.css'); ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/vendors/css/vendor.bundle.base.css'); ?>">
@@ -17,6 +19,7 @@
 
 <body>
 	<div class="container-scroller">
+		<!-- partial:../../partials/_navbar.html -->
 		<nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
 				<a class="navbar-brand brand-logo" href="<?php echo site_url('App/'); ?>">Proyek Lokasi</a>
@@ -38,7 +41,7 @@
 				</div>
 				<ul class="navbar-nav navbar-nav-right">
 					<li class="nav-item nav-profile dropdown">
-						<a class="nav-link dropdown-toggle" id="profileDropdown" href="<?php echo site_url('App/'); ?>" data-bs-toggle="dropdown" aria-expanded="false">
+						<a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
 							<div class="nav-profile-text">
 								<p class="mb-1 text-black">Fadhill Atmojo</p>
 							</div>
@@ -175,7 +178,7 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="<?php echo site_url('App/'); ?>">
-							<span class="menu-title">Proyek & Lokasi</span>
+							<span class="menu-title">Proyek Lokasi</span>
 							<i class="mdi mdi-home menu-icon"></i>
 						</a>
 					</li>
@@ -185,148 +188,68 @@
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="page-header">
+						<h3 class="page-title"> Edit Proyek </h3>
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item">All Data Proyek</li>
+								<li class="breadcrumb-item">Proyek</li>
+								<li class="breadcrumb-item active" aria-current="page">Edit Proyek</li>
 							</ol>
 						</nav>
-						<h3 class="page-title"> Data Proyek </h3>
-						<a href="<?php echo site_url('proyek/tambahProyek'); ?>" class="btn btn-light">Tambah Proyek</a>
 					</div>
 					<div class="row">
-						<div class="col-lg-12 grid-margin stretch-card">
+						<div class="col-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<p>
-										Data Proyek
-									</p>
-									<table class="table table-bordered">
-										<thead>
-											<tr>
-												<th> # </th>
-												<th> Nama Proyek </th>
-												<th> Client </th>
-												<th> Rentang Proyek </th>
-												<!-- <th> Tanggal Selesai </th> -->
-												<th> Lokasi </th>
-												<th> Pimpinan Proyek </th>
-												<th> Keterangan </th>
-												<th> Action </th>
-
-											</tr>
-										</thead>
-										<tbody>
-											<?php if (!empty($proyek)): ?>
-												<?php $no = 1; ?>
-												<?php foreach ($proyek as $itemProyek): ?>
-													<tr>
-
-														<td><?php echo $no++; ?></td>
-
-														<td><?php echo htmlspecialchars($itemProyek['namaProyek']); ?></td>
-														<td><?php echo htmlspecialchars($itemProyek['client']); ?></td>
-														<td><?php echo htmlspecialchars($itemProyek['tglMulai']); ?> - <?php echo htmlspecialchars($itemProyek['tglSelesai']); ?></td>
-														<td>
-															<?php if (!empty($itemProyek['lokasi'])): ?>
-																<ol>
-																	<?php foreach ($itemProyek['lokasi'] as $itemProyekLokasi): ?>
-																		<li>
-																			<?php echo htmlspecialchars($itemProyekLokasi['namaLokasi']); ?><br>
-																		</li>
-																	<?php endforeach; ?>
-																</ol>
-															<?php endif; ?>
-
-														</td>
-														<td><?php echo htmlspecialchars($itemProyek['pimpinanProyek']); ?></td>
-														<td><?php echo htmlspecialchars($itemProyek['keterangan']); ?></td>
-														<td>
-															<a href="<?php echo site_url('proyek/edit/' . $itemProyek['id']); ?>" class="btn btn-gradient-warning">Update</a>
-															<br>
-															<br>
-															<!-- Formulir untuk Hapus -->
-															<form action="<?php echo site_url('proyek/delete/' . $itemProyek['id']); ?>" method="post" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus lokasi ini?');">
-																<input type="hidden" name="id" value="<?php echo $itemProyek['id']; ?>">
-																<button type="submit" class="btn btn-gradient-danger">Delete</button>
-															</form>
-														</td>
-													</tr>
-												<?php endforeach; ?>
-											<?php else: ?>
-												<tr>
-													<td colspan="6">Tidak ada data lokasi.</td>
-												</tr>
-											<?php endif; ?>
-
-										</tbody>
-									</table>
+									<form class="forms-sample" action="<?php echo site_url('proyek/update/' . $proyek['id']); ?>" method="post">
+										<div class="form-group">
+											<label for="namaProyek">Nama Proyek</label>
+											<input type="text" class="form-control" id="namaProyek" placeholder="Nama Proyek" name="namaProyek" value="<?php echo $proyek['namaProyek']; ?>" required>
+										</div>
+										<div class="form-group">
+											<label for="client">Client</label>
+											<input type="text" class="form-control" id="client" placeholder="Client" name="client"  value="<?php echo $proyek['client']; ?>" required>
+										</div>
+										<div class="form-group">
+											<label for="tglMulai">Tanggal Mulai</label>
+											<input type="date" class="form-control" id="tglMulai" name="tglMulai" value="<?php echo $proyek['tglMulai']; ?>" required>
+										</div>
+										<div class="form-group">
+											<label for="tglSelesai">Tanggal Selesai</label>
+											<input type="date" class="form-control" id="tglSelesai" name="tglSelesai" value="<?php echo $proyek['tglSelesai']; ?>" required>
+										</div>
+										<div class="form-group">
+											<label for="pimpinanProyek">Pimpinan Proyek</label>
+											<input type="text" class="form-control" id="pimpinanProyek" placeholder="Pimpinan Proyek" name="pimpinanProyek" value="<?php echo $proyek['pimpinanProyek']; ?>" required>
+										</div>
+										<div class="form-group">
+											<label for="keterangan">Keterangan</label>
+											<textarea class="form-control" id="keterangan" placeholder="Keterangan" name="keterangan" required><?php echo $proyek['keterangan']; ?></textarea>
+										</div>
+										<div class="form-group">
+											<label>Lokasi Proyek</label>
+											<select class="js-example-basic-multiple" multiple="multiple" style="width:100%" id="lokasi" name="lokasiIds[]" required>
+												<?php if (!empty($lokasi)): ?>
+													<?php foreach ($lokasi as $itemlokasi): ?>
+														<option value="<?php echo $itemlokasi['id']; ?>">
+															<?php echo $itemlokasi['namaLokasi']; ?>
+														</option>
+													<?php endforeach; ?>
+												<?php endif; ?>
+											</select>
+										</div>
+										<button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+										<a href="<?php echo site_url('App/'); ?>" class="btn btn-light">Back</a>
+									</form>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="page-header">
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item">All Data Lokasi</li>
-							</ol>
-						</nav>
-						<h3 class="page-title"> Data Lokasi </h3>
-						<a href="<?php echo site_url('lokasi/tambahLokasi'); ?>" class="btn btn-light">Tambah Lokasi</a>
-					</div>
-					<div class="row">
-						<div class="col-lg-12 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
-									<p>
-										Data Lokasi
-									</p>
-									<table class="table table-bordered">
-										<thead>
-											<tr>
-												<th>#</th>
-												<th>Nama Lokasi</th>
-												<th>Kota</th>
-												<th>Provinsi</th>
-												<th>Negara</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php $no = 1; ?>
-											<?php foreach ($lokasi as $itemLokasi): ?>
-												<tr>
-
-													<td><?php echo $no++; ?></td>
-													<td><?php echo htmlspecialchars($itemLokasi['namaLokasi']); ?></td>
-													<td><?php echo htmlspecialchars($itemLokasi['kota']); ?></td>
-													<td><?php echo htmlspecialchars($itemLokasi['provinsi']); ?></td>
-													<td><?php echo htmlspecialchars($itemLokasi['negara']); ?></td>
-													<td>
-														<a href="<?php echo site_url('lokasi/edit/' . $itemLokasi['id']); ?>" class="btn btn-gradient-warning">Update</a>
-														<br>
-														<br>
-														<!-- Formulir untuk Hapus -->
-														<form action="<?php echo site_url('lokasi/delete/' . $itemLokasi['id']); ?>" method="post" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus lokasi ini?');">
-															<input type="hidden" name="id" value="<?php echo $itemLokasi['id']; ?>">
-															<button type="submit" class="btn btn-gradient-danger">Delete</button>
-														</form>
-													</td>
-												</tr>
-											<?php endforeach; ?>
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-
 				</div>
 				<!-- content-wrapper ends -->
-				<!-- partial:../../partials/_footer.html -->
 				<footer class="footer">
 					<div class="d-sm-flex justify-content-center justify-content-sm-between">
-						<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Made by Fadhill <i class="mdi mdi-heart text-danger"></i></span>
+						<span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
+						<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copied by Fadhill <i class="mdi mdi-heart text-danger"></i></span>
 					</div>
 				</footer>
 				<!-- partial -->
@@ -340,6 +263,8 @@
 	<script src="<?php echo base_url('assets/vendors/js/vendor.bundle.base.js'); ?>"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page -->
+	<script src="<?php echo base_url('assets/vendors/select2/select2.min.js'); ?>"></script>
+	<script src="<?php echo base_url('assets/vendors/typeahead.js/typeahead.bundle.min.js'); ?>"></script>
 	<!-- End plugin js for this page -->
 	<!-- inject:js -->
 	<script src="<?php echo base_url('assets/js/off-canvas.js'); ?>"></script>
@@ -349,6 +274,10 @@
 	<script src="<?php echo base_url('assets/js/jquery.cookie.js'); ?>"></script>
 	<!-- endinject -->
 	<!-- Custom js for this page -->
+	<script src="<?php echo base_url('assets/js/typeahead.js'); ?>"></script>
+
+	<script src="<?php echo base_url('assets/js/select2.js'); ?>"></script>
+	<!-- <script src="../../assets/js/select2.js"></script> -->
 	<!-- End custom js for this page -->
 </body>
 
