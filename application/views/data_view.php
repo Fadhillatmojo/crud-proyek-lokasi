@@ -245,7 +245,7 @@
 															<br>
 															<br>
 															<!-- Formulir untuk Hapus -->
-															<form action="<?php echo site_url('proyek/delete/' . $itemProyek['id']); ?>" method="post" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus lokasi ini?');">
+															<form action="<?php echo site_url('proyek/delete/' . $itemProyek['id']); ?>" method="post" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus proyek ini?');">
 																<input type="hidden" name="id" value="<?php echo $itemProyek['id']; ?>">
 																<button type="submit" class="btn btn-gradient-danger">Delete</button>
 															</form>
